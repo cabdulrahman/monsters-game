@@ -3,6 +3,7 @@ from sqlalchemy import (
     create_engine, Column, Integer, String, Float, Boolean,
     ForeignKey, Table, DateTime, Enum, Text
 )
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float, Enum as SQLEnum
 from enum import Enum as PyEnum 
@@ -10,6 +11,7 @@ from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 import enum
 import os
+
 
 Base = declarative_base()
 
@@ -145,3 +147,7 @@ class Achievement(Base):
 base_dir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(base_dir, "..", "monster_game.db")
 engine = create_engine(f"sqlite:///{os.path.abspath(db_path)}")
+
+# Create SessionLocal and session AFTER defining engine
+SessionLocal = sessionmaker(bind=engine)
+session = SessionLocal()
