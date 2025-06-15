@@ -36,7 +36,7 @@ monster_game/
 
 ## Setup Instructions
 1. Clone the repository
- git clone https://github.com/Harshpal01/monster_game.git
+ git clone https://github.com/cabdulrahman/monsters-game
  cd monster_game
 2. Set up a virtual environment
  python3 -m venv venv
@@ -51,7 +51,7 @@ monster_game/
  cd lib
  python lib/seed.py
  cd ..
- 
+
 ## Running the Game
  python cli.py
 
