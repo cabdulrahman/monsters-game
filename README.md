@@ -62,9 +62,9 @@ monster_game/
  cd db
  python create_db.py
  python reset_db.py
- cd lib
- python lib/seed.py
  cd ..
+ python lib/seed.py
+ 
 
 ## Running the Game
  python cli.py
