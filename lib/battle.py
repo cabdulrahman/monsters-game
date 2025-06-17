@@ -160,8 +160,8 @@ def start_battle(player_monster, wild_monster_species):
     if player_hp > 0:
         print(f"\n You defeated the wild {wild_monster_species.name}!")
         player_monster.current_hp = max(player_hp, 1)
-        reward_player(player_monster.player)
-        level_up_player(player_monster.player)
+        reward_player(player_monster.owner)
+        level_up_player(player_monster.owner)
         record_battle(player_monster, wild_monster_species.name, "win")
     else:
         print(f"\n Your {player_monster.nickname} has fainted.")

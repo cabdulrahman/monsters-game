@@ -1,6 +1,8 @@
 import sys
+import random
 from db.models import Player, PlayerMonster, MonsterSpecies
 from db.base import session
+from lib.player import catch_monster
 from lib import battle, trade, player
 
 # Player Selection 
@@ -22,8 +24,15 @@ def select_player():
             print("Invalid input. Please enter a number.")
 
 # ---------- Catch ----------
-def catch_monster(current_player):
-    player.catch_monster(current_player)
+def catch_monster_menu(current_player):
+    species_list = session.query(MonsterSpecies).all()
+    if not species_list:
+        print("No monsters available to catch. Seed the database first.")
+        return
+
+    species = random.choice(species_list)
+    print(f"A wild {species.name} appeared!")
+    player.catch_monster(current_player, species)
 
 # ---------- Battle ----------
 def start_battle(current_player):
@@ -69,7 +78,7 @@ def train_monster(current_player):
         monster_id = int(input("Choose a monster to train by ID: "))
         monster = session.get(PlayerMonster, monster_id)
         if monster:
-            player.train_monster(monster)
+              train_monster(monster)
         else:
             print("Invalid monster ID.")
     except ValueError:
@@ -111,7 +120,8 @@ def main_menu():
         choice = input("Select an action > ")
 
         if choice == "1":
-            catch_monster(current_player)
+          catch_monster_menu(current_player)
+
         elif choice == "2":
             start_battle(current_player)
         elif choice == "3":

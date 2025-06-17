@@ -1,14 +1,11 @@
-
 from sqlalchemy import (
     create_engine, Column, Integer, String, Float, Boolean,
-    ForeignKey, Table, DateTime, Enum, Text
+    ForeignKey, Table, DateTime, Enum as SQLEnum, Text
 )
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Float, Enum as SQLEnum
-from enum import Enum as PyEnum 
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
+from enum import Enum as PyEnum
 from datetime import datetime
-import enum
 import os
 
 Base = declarative_base()
@@ -32,6 +29,19 @@ class MonsterType(PyEnum):
     NORMAL = "Normal"
     FAIRY = "Fairy"
 
+# Enum for rarity types
+class Rarity(PyEnum):
+    COMMON = "COMMON"
+    UNCOMMON = "UNCOMMON"
+    RARE = "RARE"
+    EPIC = "EPIC"
+    LEGENDARY = "LEGENDARY"
+
+# Enum for battle outcomes
+class BattleResult(PyEnum):
+    WIN = "win"
+    LOSS = "loss"
+    DRAW = "draw"
 
 # Association table for player achievements
 player_achievements = Table(
@@ -74,7 +84,8 @@ class MonsterSpecies(Base):
     base_hp = Column(Integer)
     base_attack = Column(Integer)
     base_defense = Column(Integer)
-    rarity = Column(Float)
+    rarity = Column(SQLEnum(Rarity, name="rarity_enum", native_enum=False))
+    
     abilities = relationship('Ability', back_populates='species')
     evolution_species_id = Column(Integer, ForeignKey('monster_species.id'), nullable=True)
     evolution_species = relationship("MonsterSpecies", remote_side="[MonsterSpecies.id]")
@@ -111,7 +122,7 @@ class Battle(Base):
     player_id = Column(Integer, ForeignKey('players.id'))
     player_monster_id = Column(Integer, ForeignKey('player_monsters.id'))
     opponent_name = Column(String)
-    outcome = Column(String)
+    outcome = Column(SQLEnum(BattleResult, name="battle_result_enum", native_enum=False))
     timestamp = Column(DateTime, default=datetime.utcnow)
 
     player = relationship("Player", back_populates="battles")

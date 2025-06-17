@@ -46,14 +46,15 @@ def view_monster_collection(player):
         print(f"- {m.nickname} the {species.name} (Level {m.level}, HP: {m.current_hp})")
 
 def train_monster(monster: PlayerMonster):
-    print(f"\n Training {monster.nickname}...")
+    print(f"\nTraining {monster.nickname}...")
     exp_gain = random.randint(10, 25)
-    monster.player.experience += exp_gain
+    monster.owner.experience += exp_gain 
     print(f"{monster.nickname} gained {exp_gain} EXP!")
 
-    level_up_player(monster.player)
+    level_up_player(monster.owner)  
     check_evolution(monster)
     session.commit()
+
 
 def level_up_player(player: Player):
     level_threshold = 100
