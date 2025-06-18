@@ -74,6 +74,79 @@ monster_game/
 
  python -m tests.test_game
  python -m tests.test_battle
+## Game Instructions
+   Welcome to the Monster Game! Embark on a journey to collect, train, and battle unique monsters. Below is a guide to help you navigate and enjoy the game.
+   Game Start
+   1. Launch the game from your terminal:
+    python cli.py
+   2. You'll see a list of available players:
+      Available Players:
+       1. AshKetchum
+       2. MistyW
+         ...
+  3. Enter the Player ID number to select your character:
+      Enter your Player ID: 1
+
+  ## Main Menu Options
+  Once logged in, you'll see the Main Menu:
+
+   Main Menu (Player: AshKetchum)
+    1. Catch Monster
+    2. Battle Wild Monster
+    3. View Collection
+    4. Train Monster
+    5. Trade
+    6. Profile
+    7. Exit
+Here's what each option does:
+
+1.  Catch Monster
+Go on a hunt to catch a wild monster.
+
+The monster's type, rarity, and stats are randomized.
+
+If successful, it gets added to your collection.
+
+2. Battle Wild Monster
+Choose one of your monsters to battle a wild one.
+
+Win to earn experience, level up, and possibly unlock achievements.
+
+Outcomes: Win / Lose / Draw (affects monster stats and player XP).
+
+3. View Collection
+View all the monsters you currently own.
+
+See their nickname, level, HP, type, and species stats.
+
+4. Train Monster
+Choose a monster to train and improve.
+
+Increases experience and can lead to level-ups.
+
+Useful for preparing for tougher battles.
+
+5. Trade
+Trade monsters with other players.
+
+You select a monster to offer and one to request.
+
+Both players must accept for the trade to complete.
+
+6. Profile
+View your player profile:
+
+Level
+
+Experience
+
+Money
+
+Achievements earned
+
+7. 🚪 Exit
+Save your progress and exit the game.
+
 
 ## Technologies used
  Python 3: The core programming language.
@@ -82,7 +155,16 @@ monster_game/
 
  SQLite: A lightweight, file-based database for persistence.
 
-# Author
- Dominic Kipkorir
-🔗 GitHub: Harshpal01
+## Database Schema
+
+The Monster Game uses a relational database to manage players, monsters, battles, trades, and achievements.
+
+You can explore the schema visually here:  
+ [Monster Game Database Schema on dbdiagram.io](https://dbdiagram.io/d/Monster-Game-Database-Schema-6852b853f039ec6d36cce3c6)
+
+ ##  Demo Video
+
+Watch the gameplay demo here: [Monster Game Demo](https://drive.google.com/file/d/1g7CcokE9PD4i22syerNX8nA1IMd7fI-B/view?usp=sharing)
+
+
 
