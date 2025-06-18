@@ -32,13 +32,15 @@ def list_player_monsters(username):
 def propose_trade(player):
     print("\n--- Propose Trade ---")
     list_player_monsters(player.username)
+
+    # Show other available players
+    print("\nAvailable Players:")
+    all_players = session.query(Player).filter(Player.id != player.id).all()
+    for p in all_players:
+        print(f"- {p.username}")
+
     monster_id = input("Enter the ID of the monster you want to trade: ")
     target_username = input("Enter the username of the player you want to trade with: ")
 
     trade_monster(player.username, target_username, monster_id)
 
-def view_trades(player):
-    print("\n[!] Trade viewing not implemented as a system, only direct trades are possible.")
-
-def accept_trade(player):
-    print("\n[!] Trade acceptance not implemented as a system, only direct trades are possible.")
