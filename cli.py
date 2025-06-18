@@ -4,6 +4,8 @@ from db.models import Player, PlayerMonster, MonsterSpecies
 from db.base import session
 from lib.player import catch_monster
 from lib import battle, trade, player
+from lib.trade import propose_trade
+
 
 # Player Selection 
 def select_player():
@@ -78,7 +80,9 @@ def train_monster(current_player):
         monster_id = int(input("Choose a monster to train by ID: "))
         monster = session.get(PlayerMonster, monster_id)
         if monster:
-              train_monster(monster)
+            monster.experience += 10
+            print(f"{monster.nickname} gained 10 XP!")
+            session.commit()
         else:
             print("Invalid monster ID.")
     except ValueError:
@@ -94,8 +98,10 @@ def view_collection(current_player):
 
 # ---------- Trade ----------
 def initiate_trade(current_player):
-    print("Feature coming soon: trade monsters with another player.")
+     propose_trade(current_player)
 
+
+    
 # ---------- Profile ----------
 def view_profile(current_player):
     print(f"\nPlayer Profile:")
